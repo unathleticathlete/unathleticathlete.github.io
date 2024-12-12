@@ -1,122 +1,202 @@
+:root {
+    --primary-color: #FF6B6B;
+    --secondary-color: #4ECDC4;
+    --text-color: #2C3E50;
+    --background-color: #F7F7F7;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #1f1f1f, #0f0f0f);
-  color: #fff;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  overflow: hidden;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
 }
 
-h1, h2, h3, h4, p {
-  margin: 0;
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.basketball {
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    animation: bounce 0.5s infinite alternate;
+}
+
+.basketball::before,
+.basketball::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    opacity: 0.1;
+}
+
+.basketball::before {
+    left: -10%;
+    top: 10%;
+}
+
+.basketball::after {
+    right: -10%;
+    bottom: 10%;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
 }
 
 header {
-  text-align: center;
-  padding-top: 80px;
+    background-color: var(--primary-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-.intro h1 {
-  font-size: 4rem;
-  font-weight: 700;
-  color: #ffcc00;
-  text-transform: uppercase;
-  text-shadow: 0px 0px 10px rgba(255, 204, 0, 0.8);
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
 }
 
-.intro h2 {
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: #cccccc;
-  margin: 10px 0;
+nav ul li {
+    margin: 0 1rem;
 }
 
-.intro p {
-  font-size: 1.2rem;
-  font-weight: 300;
-  color: #aaaaaa;
-  margin-top: 20px;
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
 }
 
-section {
-  margin: 40px 20px;
+nav ul li a:hover {
+    color: var(--secondary-color);
 }
 
-h3 {
-  font-size: 2rem;
-  font-weight: 600;
-  text-align: center;
-  color: #ffcc00;
-  margin-bottom: 20px;
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
 }
 
-.about p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #dddddd;
+.hero {
+    text-align: center;
+    padding: 4rem 0;
 }
 
-.skills {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-top: 30px;
+h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
 }
 
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+.tagline {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
 }
 
-.skill-item {
-  background: linear-gradient(135deg, #ff4081, #ff79b0);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px rgba(255, 105, 180, 0.5);
-  text-align: center;
-  transition: transform 0.3s;
+h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
 }
 
-.skill-item:hover {
-  transform: scale(1.1);
+.about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
 }
 
-.skill-item h4 {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 10px;
+.about-text {
+    flex: 1;
 }
 
-.skill-item p {
-  font-size: 1rem;
-  color: #f2f2f2;
+.stats {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: 900;
+    display: block;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.skill-list, .goal-list {
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.skill-list li, .goal-list li {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.skill-list li:hover, .goal-list li:hover {
+    transform: scale(1.05);
 }
 
 footer {
-  background: #111;
-  text-align: center;
-  padding: 20px;
-  font-size: 1.1rem;
-  color: #f1f1f1;
-  margin-top: 30px;
-}
-
-footer p {
-  font-weight: 400;
+    background-color: var(--primary-color);
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
 }
 
 @media (max-width: 768px) {
-  .skills {
-    grid-template-columns: 1fr;
-  }
+    .about-content {
+        flex-direction: column;
+    }
+
+    .stats {
+        width: 100%;
+        justify-content: space-around;
+    }
 }
+
