@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', (event) => {
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -9,37 +9,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Loader animation
-    window.addEventListener('load', () => {
-        const loader = document.querySelector('.loader');
-        loader.style.opacity = '0';
-        setTimeout(() => {
-            loader.style.display = 'none';
-        }, 500);
-    });
-
-    // Animate elements on scroll
-    const animateOnScroll = () => {
-        const elements = document.querySelectorAll('.skill-list li, .goal-list li, .stat');
-        elements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            const elementBottom = element.getBoundingClientRect().bottom;
-            if (elementTop < window.innerHeight && elementBottom > 0) {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
+    // Intersection Observer for fade-in effect
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in');
             }
         });
-    };
+    }, { threshold: 0.1 });
 
-    window.addEventListener('scroll', animateOnScroll);
-    animateOnScroll(); // Initial check on page load
+    document.querySelectorAll('section').forEach(section => {
+        observer.observe(section);
+    });
 
-    // Add animation classes to elements
-    const animatedElements = document.querySelectorAll('.skill-list li, .goal-list li, .stat');
-    animatedElements.forEach(element => {
-        element.style.opacity = '0';
-        element.style.transform = 'translateY(20px)';
-        element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    // Dynamic year for copyright in footer
+    const currentYear = new Date().getFullYear();
+    document.querySelector('.footer-text').textContent += ` © ${currentYear} Anand Bharti`;
+
+    // Lazy loading for videos
+    document.querySelectorAll('video').forEach(video => {
+        video.setAttribute('loading', 'lazy');
+    });
+
+    // Mobile menu toggle
+    const menuToggle = document.createElement('button');
+    menuToggle.textContent = '☰';
+    menuToggle.classList.add('menu-toggle');
+    document.querySelector('nav').prepend(menuToggle);
+
+    menuToggle.addEventListener('click', () => {
+        document.querySelector('nav ul').classList.toggle('show');
     });
 });
 
