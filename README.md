@@ -2,7 +2,7 @@
 
 _Welcome to my personal portfolio website!_
 
-🌐 visit the live website [unathleticathlete.github.io](https://www.unathleticathlete.github.io)
+🌐 visit the live website [unathleticathlete.github.io](https://unathleticathlete.github.io)
 ---
 
 
